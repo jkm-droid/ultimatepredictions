@@ -4,20 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_margin="5dp"
     android:layout_height="wrap_content">
 
     <!--    for space-->
     <TextView
-        android:background="@color/backgroundApp"
+        android:background="#7EB8B8"
         android:layout_width="match_parent"
-        android:layout_height="6dp"/>
+        android:layout_height="2dp"/>
+
     <androidx.cardview.widget.CardView
         android:backgroundTint="#96BEC2"
         android:background="#96BEC2"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="3dp">
+        app:cardCornerRadius="4dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -29,7 +31,8 @@
                 <TextView
                     android:id="@+id/time"
                     android:layout_marginTop="10dp"
-                    android:textColor="#0C80DB"
+                    android:textColor="#031A2D"
+                    android:textStyle="bold"
                     android:layout_marginBottom="0dp"
                     android:layout_marginStart="10dp"
                     android:text="@string/_10_mar_2021_10_30"
@@ -50,13 +53,7 @@
                     android:layout_marginLeft="5dp" />
 
             </LinearLayout>
-            <ImageView
-                android:id="@+id/winlose"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="7dp"
-                android:layout_width="21dp"
-                android:layout_height="21dp"/>
+
 
             <LinearLayout
                 android:id="@+id/layout_tips"
@@ -68,73 +65,39 @@
                     android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp">
+                    android:layout_marginLeft="10dp">
                     <TextView
                         android:id="@+id/team1"
                         android:text="@string/chelsea_fc"
                         android:textSize="13sp"
-                        android:gravity="center"
-                        android:inputType="textPersonName"
+                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:padding="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/homeodds"
-                        android:text="@string/_2_74"
-                        android:background="#C6DEF1"
-                        android:inputType="numberDecimal"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
                         android:id="@+id/home"
                         android:text="@string/home"
-                        android:inputType="textPersonName"
                         android:textColor="@color/black"
                         android:padding="5dp"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
-                    android:layout_weight="0.5"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0.3"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/vs"
                         android:text="@string/vs"
-                        android:gravity="center"
+                        android:textStyle="bold"
                         android:textSize="13sp"
-                        android:inputType="textPersonName"
                         android:textColor="@color/black"
                         android:padding="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/drawodds"
-                        android:text="@string/_2_74"
-                        android:background="#C6DEF1"
-                        android:inputType="numberDecimal"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:textSize="13sp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/draw"
-                        android:text="@string/draw"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:textSize="13sp"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -150,32 +113,33 @@
                         android:id="@+id/team2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:inputType="textPersonName"
                         android:padding="5dp"
                         android:text="@string/man_utd"
+                        android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
-                    <TextView
-                        android:id="@+id/awayodds"
-                        android:text="@string/_2_74"
-                        android:background="#C6DEF1"
-                        android:inputType="numberDecimal"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/away"
                         android:text="@string/away"
                         android:textSize="13sp"
-                        android:inputType="textPersonName"
                         android:textColor="@color/black"
                         android:padding="5dp"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp">
+                    <ImageView
+                        android:id="@+id/winlose"
+                        android:src="@drawable/won_status"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -187,24 +151,13 @@
                     android:id="@+id/correct"
                     android:text="@string/pick_away_2_74"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:layout_weight="1"
                     android:layout_marginBottom="2dp"
                     android:layout_marginStart="10dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp" />
-
-                <TextView
-                    android:id="@+id/score"
-                    android:text="Score: 2-0"
-                    android:textAlignment="textEnd"
-                    android:layout_marginRight="35dp"
-                    android:layout_weight="1"
-                    android:layout_marginBottom="2dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:layout_marginEnd="40dp" />
             </LinearLayout>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

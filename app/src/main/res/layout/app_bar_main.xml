@@ -12,9 +12,20 @@
         android:layout_height= "wrap_content" >
         <androidx.appcompat.widget.Toolbar
             android:id= "@+id/toolbar"
+            app:titleTextColor="#fff"
             android:layout_width= "match_parent"
             android:layout_height= "?attr/actionBarSize"
             android:background="#72B3BB"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_alignParentBottom="true"
+            app:tabIndicatorColor="#fff"
+            app:tabTextColor="#fff"
+            app:tabSelectedTextColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#72B3BB">
+        </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <RelativeLayout
@@ -23,16 +34,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#72B3BB">
-        </com.google.android.material.tabs.TabLayout>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"
-            android:layout_above="@id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </RelativeLayout>

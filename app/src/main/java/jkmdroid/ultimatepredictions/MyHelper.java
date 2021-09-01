@@ -54,7 +54,7 @@ public class MyHelper{
         }else {
             if (dayOfYear == calendar.get(Calendar.DAY_OF_YEAR)){
                 if (millis - System.currentTimeMillis() < (60*1000*60)){
-                    return (calendar.get(Calendar.MINUTE)-minute) + " minutes remaining";
+                    return (60 - (minute -calendar.get(Calendar.MINUTE))) + " minutes remaining";
                 }
                 return "Today "+DateFormat.format("hh:mm a", millis).toString();
             } else if (dayOfYear - calendar.get(Calendar.DAY_OF_YEAR) == -1){

@@ -3,47 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="Contact Us">
-        <menu>
-            <item
-                android:id="@+id/subscribe"
-                android:icon="@drawable/vip_fire"
-                android:title="Join VIP for PREMIUM tips" />
-            <item
-                android:id="@+id/email"
-                android:icon="@drawable/email"
-                android:title="Email" />
-            <item
-                android:id="@+id/whatsapp"
-                android:icon="@drawable/whatsapp"
-                android:title="@string/whatsapp" />
-            <item
-                android:id="@+id/telegram"
-                android:icon="@drawable/telegram"
-                android:title="@string/telegram" />
-        </menu>
-    </item>
-    <item android:title="@string/app_name">
-        <menu>
-            <item
-                android:id="@+id/privacy"
-                android:icon="@drawable/privacy"
-                android:title="Privacy" />
-            <item
-                android:id="@+id/terms"
-                android:icon="@drawable/terms"
-                android:title="Terms" />
-        </menu>
-    </item>
+    <group
+        android:id="@+id/ultimate_predictions"
+        android:title="@string/app_name">
+        <item
+            android:id="@+id/subscribe"
+            android:icon="@drawable/vip_fire"
+            android:title="Join VIP for PREMIUM tips" />
+        <item
+            android:id="@+id/privacy"
+            android:icon="@drawable/privacy"
+            android:title="Privacy Policy" />
+        <item
+            android:id="@+id/terms"
+            android:icon="@drawable/terms"
+            android:title="Our Terms" />
+    </group>
 
-    <item android:title="@string/developers">
-        <menu>
-            <item
-                android:id="@+id/developers"
-                android:icon="@drawable/developers"
-                android:title="@string/developed_by_j_p" />
-        </menu>
-    </item>
-
-
+    <group android:id="@+id/contact_us">
+        <item
+            android:id="@+id/email"
+            android:icon="@drawable/email"
+            android:title="@string/email" />
+        <item
+            android:id="@+id/whatsapp"
+            android:icon="@drawable/whatsapp"
+            android:title="@string/whatsapp" />
+        <item
+            android:id="@+id/telegram"
+            android:icon="@drawable/telegram"
+            android:title="@string/telegram" />
+    </group>
 </menu>

@@ -1,5 +1,6 @@
 package jkmdroid.ultimatepredictions;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -27,7 +28,7 @@ public class FragmentFreeTips extends Fragment {
     private OnFragmentRestart onFragmentRestart;
     private ArrayList<Tip> tips;
     TextView errorView, vipTextView, title;
-    ImageView imageError, imageVip1, imageVip2;
+    ImageView imageError;
 
     @Nullable
     @Override
@@ -36,27 +37,14 @@ public class FragmentFreeTips extends Fragment {
 
         listView = view.findViewById(R.id.listview);
         title =  view.findViewById(R.id.title);
+        imageError = view.findViewById(R.id.image_error);
 
-//        MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
-//            @Override
-//            public void onInitializationComplete(InitializationStatus initializationStatus) {
-//            }
-//        });
-//
-//        AdView mAdView = view.findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
 
         errorView = view.findViewById(R.id.error);
         vipTextView = view.findViewById(R.id.vip_textview);
 
-        imageError = view.findViewById(R.id.image_error);
-        imageVip1 = view.findViewById(R.id.vip_image1);
-        imageVip2 = view.findViewById(R.id.vip_image2);
-
-        if (MyHelper.isOnline(getActivity())) {
-            errorView.setVisibility(View.VISIBLE);
-            errorView.setText(R.string.error);
+        if (MyHelper.isOnline(getContext())) {
+            errorView.setText("Getting tips...Please wait");
         }else {
             imageError.setVisibility(View.VISIBLE);
             errorView.setVisibility(View.VISIBLE);
@@ -99,70 +87,35 @@ public class FragmentFreeTips extends Fragment {
 
     class Adapter extends ArrayAdapter {
         public Adapter(@NonNull Context context, @NonNull List objects){
-            super(context, R.layout.past_tips, objects);
+            super(context, R.layout.free_tips, objects);
         }
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent){
             View v;
             if (convertView == null)
-                v = LayoutInflater.from(getContext()).inflate(R.layout.past_tips, null);
+                v = LayoutInflater.from(getContext()).inflate(R.layout.free_tips, null);
             else v = convertView;
 
             ((TextView)v.findViewById(R.id.time)).setText(MyHelper.toPostDate(tips.get(position).getMatchTime()));
             ((TextView)v.findViewById(R.id.team1)).setText(tips.get(position).getTeamA());
             ((TextView)v.findViewById(R.id.team2)).setText(tips.get(position).getTeamB());
-            ((TextView)v.findViewById(R.id.drawodds)).setText(String.format("%s", tips.get(position).getDraw()));
-            ((TextView)v.findViewById(R.id.homeodds)).setText(String.format("%s", tips.get(position).getHome()));
-            ((TextView)v.findViewById(R.id.awayodds)).setText(String.format("%s", tips.get(position).getAway()));
-
-            ImageView imgWinlose = v.findViewById(R.id.winlose);
 
             if (tips.get(position).getVipStatus() == 10){
                 ((TextView) v.findViewById(R.id.vip_status)).setText(R.string.vip_string);
             }
 
-            String winlose = tips.get(position).getWinLose();
-            String s, correct = tips.get(position).getCorrect();
-            s = "Picked: " + correct + " -> ";
-
-
-            if (winlose.equalsIgnoreCase("won")) {
-
-                imgWinlose.setImageResource(R.drawable.won_status);
-
-                if (correct.equalsIgnoreCase("home")){
-                    ((TextView)v.findViewById(R.id.team1)).setTextColor(Color.parseColor("#0B880F"));
-                    ((TextView)v.findViewById(R.id.homeodds)).setTextColor(Color.parseColor("#0B880F"));
-                    ((TextView)v.findViewById(R.id.home)).setTextColor(Color.parseColor("#0B880F"));
-                    s += tips.get(position).getHome();
-
-                }else if(correct.equalsIgnoreCase("draw")){
-                    ((TextView)v.findViewById(R.id.vs)).setTextColor(Color.parseColor("#0B880F"));
-                    ((TextView)v.findViewById(R.id.drawodds)).setTextColor(Color.parseColor("#0B880F"));
-                    ((TextView)v.findViewById(R.id.draw)).setTextColor(Color.parseColor("#0B880F"));
-                    s += tips.get(position).getDraw();
-
-                }else if (correct.equalsIgnoreCase("away")){
-                    ((TextView)v.findViewById(R.id.team2)).setTextColor(Color.parseColor("#0B880F"));
-                    ((TextView)v.findViewById(R.id.awayodds)).setTextColor(Color.parseColor("#0B880F"));
-                    ((TextView)v.findViewById(R.id.away)).setTextColor(Color.parseColor("#0B880F"));
-                    s += tips.get(position).getAway();
-
-                }else{
-                    s = "Picked: "+tips.get(position).getCorrect()+" -> "+tips.get(position).getOther();
-                }
-
-                if (tips.get(position).getScore().equals(""))
-                    ((TextView)v.findViewById(R.id.score)).setText(String.format("%s", tips.get(position).getScore()));
-                else
-                    ((TextView)v.findViewById(R.id.score)).setText(String.format("Score:%s", tips.get(position).getScore()));
-
-                ((TextView) v.findViewById(R.id.score)).setTextColor(Color.argb(250,0,165,0));
-                ((TextView) v.findViewById(R.id.correct)).setTextColor(Color.argb(250,0,165,0));
-                ((TextView) v.findViewById(R.id.correct)).setText(s);
-
+            String s = "", correct = tips.get(position).getCorrect();
+//            s = "Pick => " + correct;
+            if (correct.equalsIgnoreCase("home")){
+                s = tips.get(position).getTeamA()+ " Wins";
+            }else if (correct.equalsIgnoreCase("away")){
+                s = tips.get(position).getTeamB()+ " Wins";
+            }else{
+                s = "Pick => " + correct;
             }
+
+            ((TextView) v.findViewById(R.id.correct)).setText(s);
 
             return v;
         }

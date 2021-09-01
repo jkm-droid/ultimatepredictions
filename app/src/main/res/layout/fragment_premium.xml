@@ -1,142 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#263535"
+    android:background="#7EB8B8"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/layout_vip"
-        android:layout_marginTop="5dp"
+    <TextView
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="#fff"
+        android:text="Hello member,"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"/>
 
-        <ImageView
-            android:id="@+id/vip_image1"
-            android:src="@drawable/vip_fire"
-            android:layout_width="30dp"
-            android:layout_weight="1"
-            android:layout_height="30dp"/>
-
-        <TextView
-            android:id="@+id/vip_benefits"
-            android:textAlignment="center"
-            android:text="@string/vip_message"
-            android:layout_marginTop="8dp"
-            android:textStyle="bold"
-            android:layout_weight="1"
-            android:textColor="@color/green"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal" />
-
-        <ImageView
-            android:id="@+id/vip_image2"
-            android:src="@drawable/vip_fire"
-            android:layout_width="30dp"
-            android:layout_weight="1"
-            android:layout_height="30dp"/>
-
-    </LinearLayout>
-
-
-    <androidx.cardview.widget.CardView
-        android:backgroundTint="#96BEC2"
-        app:cardCornerRadius="4dp"
-        android:layout_margin="2dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/text_vip"
-                android:text="@string/benefits_of_joining_vip"
-                android:textStyle="bold"
-                android:textColor="#0B880F"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/text_correct"
-                android:layout_below="@+id/text_vip"
-                android:text="@string/correct_tips"
-                android:textColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:drawableLeftCompat="@drawable/won_status" />
-
-            <TextView
-                android:id="@+id/text_daily"
-                android:layout_below="@+id/text_correct"
-                android:text="@string/real_time_amp_daily_updates"
-                android:textColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:drawableLeftCompat="@drawable/won_status" />
-
-            <TextView
-                android:layout_below="@+id/text_daily"
-                android:text="@string/more_accurate_tips"
-                android:textColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:drawableLeftCompat="@drawable/won_status" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:backgroundTint="#96BEC2"
-        app:cardCornerRadius="4dp"
-        android:layout_margin="2dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/text_benefits"
-                android:textStyle="bold"
-                android:layout_marginTop="5dp"
-                android:text="@string/benefits_of_joining"
-                android:gravity="center"
-                android:textColor="@color/green"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/toptier_benefits"
-                android:layout_below="@+id/text_benefits"
-                android:text="@string/free_tips"
-                android:textColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:drawableLeftCompat="@drawable/won_status" />
-
-            <TextView
-                android:id="@+id/text_real"
-                android:layout_below="@+id/toptier_benefits"
-                android:text="@string/real_time_updates"
-                android:textColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:drawableLeftCompat="@drawable/won_status" />
-
-            <TextView
-                android:layout_below="@+id/text_real"
-                android:text="@string/accurate_tips"
-                android:textColor="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:drawableLeftCompat="@drawable/won_status" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    <TextView
+        android:gravity="center"
+        android:textColor="#fff"
+        android:text="Subscribe now for our VIP membership"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/join_vip"
@@ -148,18 +30,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:enabled="false"
         android:text="@string/join_vip_for_more_premium_odds" />
-
-<!--    <com.google.android.gms.ads.AdView-->
-<!--        xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-<!--        android:id="@+id/adView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        ads:adSize="LARGE_BANNER"-->
-<!--        ads:adUnitId="ca-app-pub-2013226613512577/6409041542">-->
-<!--    </com.google.android.gms.ads.AdView>-->
 
 </LinearLayout>

@@ -3,7 +3,7 @@
     package="jkmdroid.ultimatepredictions">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="com.android.vending.BILLING" />-->
+    <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ultimatepredictions">
+        <activity android:name=".Subscription" />
         <activity android:name=".LauncherScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SubscribeActivity"/>
-        <activity android:name=".MainActivity"/>
-<!--        <meta-data-->
-<!--            android:name="com.google.android.gms.ads.APPLICATION_ID"-->
-<!--            android:value="ca-app-pub-2013226613512577~7772571596"/>-->
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

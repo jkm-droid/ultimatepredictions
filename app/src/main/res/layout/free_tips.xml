@@ -8,12 +8,14 @@
     android:layout_height="wrap_content">
     <!--    for space-->
     <TextView
-        android:background="@color/backgroundApp"
+        android:background="#7EB8B8"
         android:layout_width="match_parent"
         android:layout_height="6dp"/>
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="3dp"
+        app:cardCornerRadius="4dp"
         android:backgroundTint="#96BEC2"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
@@ -27,9 +29,10 @@
                 <TextView
                     android:id="@+id/time"
                     android:layout_marginTop="10dp"
-                    android:textColor="#0C80DB"
+                    android:textColor="#031A2D"
                     android:layout_marginBottom="0dp"
                     android:layout_marginStart="10dp"
+                    android:textStyle="bold"
                     android:text="@string/_10_mar_2021_10_30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,16 +75,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:id="@+id/homeodds"
-                        android:text="@string/_2_74"
-                        android:background="#C6DEF1"
-                        android:inputType="numberDecimal"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
                         android:id="@+id/home"
                         android:text="@string/home"
                         android:inputType="textPersonName"
@@ -94,34 +87,16 @@
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="0dp"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">
                     <TextView
                         android:id="@+id/vs"
                         android:text="@string/vs"
+                        android:textStyle="bold"
                         android:gravity="center"
-                        android:inputType="textPersonName"
                         android:textColor="@color/black"
                         android:padding="5dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/drawodds"
-                        android:text="@string/_2_74"
-                        android:background="#C6DEF1"
-                        android:inputType="numberDecimal"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                    <TextView
-                        android:id="@+id/draw"
-                        android:text="@string/draw"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:gravity="center"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
@@ -138,20 +113,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:inputType="textPersonName"
                         android:padding="5dp"
                         android:text="@string/man_utd"
                         android:textColor="@color/black"
                         android:textStyle="bold" />
-                    <TextView
-                        android:id="@+id/awayodds"
-                        android:text="@string/_2_74"
-                        android:background="#C6DEF1"
-                        android:textColor="@color/black"
-                        android:padding="5dp"
-                        android:layout_gravity="center"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
                     <TextView
                         android:id="@+id/away"
                         android:text="@string/away"
@@ -171,10 +136,12 @@
                 <TextView
                     android:id="@+id/correct"
                     android:text="@string/pick_away_2_74"
-                    android:textColor="@color/vip_status"
+                    android:textColor="#E64A19"
                     android:textStyle="bold"
                     android:layout_weight="1"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginStart="10dp"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

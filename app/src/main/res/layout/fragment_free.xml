@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:background="#263535"
+    android:background="#7EB8B8"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -73,16 +73,5 @@
         android:layout_width="match_parent"
         android:layout_marginBottom="3dp"
         android:layout_height="match_parent"/>
-<!--    <com.google.android.gms.ads.AdView-->
-<!--        xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-<!--        android:id="@+id/adView"-->
-<!--        android:layout_marginBottom="10dp"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        ads:adSize="LARGE_BANNER"-->
-<!--        ads:adUnitId="ca-app-pub-2013226613512577/6409041542">-->
-<!--    </com.google.android.gms.ads.AdView>-->
 
 </RelativeLayout>

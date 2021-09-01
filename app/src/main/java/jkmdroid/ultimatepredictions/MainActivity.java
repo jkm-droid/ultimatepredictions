@@ -80,10 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     void init() {
-        ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setSubtitle("ultimate win");
-
         Bundle extras = getIntent().getExtras();
         if (extras != null)
             selectedTab = extras.getInt("tab", 0);
@@ -196,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    String string = "https://play.google.com/store/apps/details?id=jkmdroid.toptier";
+    String string = "https://play.google.com/store/apps/details?id=jkmdroid.ultimatepredictions";
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -216,11 +212,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 terms.setData(Uri.parse("https://toptier.mblog.co.ke/info/terms.html"));
                 startActivity(terms);
                 finish();
-                break;
-            case R.id.developers:
-                Intent dev = new Intent(Intent.ACTION_VIEW);
-                dev.setData(Uri.parse("https://jpdevelopers.mblog.co.ke"));
-                startActivity(dev);
                 break;
             case R.id.whatsapp:
                 PackageManager packageManager = getPackageManager();
@@ -256,7 +247,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(Intent.createChooser(intent1, "Choose browser"));
                 break;
             case R.id.subscribe:
-                startActivity(new Intent(MainActivity.this, SubscribeActivity.class));
+                startActivity(new Intent(MainActivity.this, Subscription.class));
         }
         return true;
     }
@@ -297,10 +288,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 tip.setId(object.getInt("id"));
                 tip.setTeamA(object.getString("teamA"));
                 tip.setTeamB(object.getString("teamB"));
-                tip.setHome(object.getDouble("home"));
                 tip.setWinLose(object.getString("wl_status"));
                 tip.setDraw(object.getDouble("draw"));
-                tip.setAway(object.getDouble("away"));
                 tip.setCorrect(object.getString("correct_tip").trim());
                 tip.setOther(object.getDouble("other"));
                 try {
@@ -308,13 +297,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                tip.setScore(object.getString("score"));
                 tip.setVipStatus(object.getInt("vip_status"));
-                try {
-                    tip.setCreatedAt(object.getString("created_at"));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+
                 tips.add(tip);
             }
         } catch (JSONException e) {
@@ -397,7 +381,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 try {
                     if (requestSuccessful)
-                        sleep(120000);
+                        sleep(180000);
                     sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -421,22 +405,44 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // this is for fragment tabs
         @Override
         public Fragment getItem(int position) {
-            if (position == 0) {
-                if (fragmentFreeTips == null)
-                    fragmentFreeTips = new FragmentFreeTips();
-                return fragmentFreeTips;
+            switch (position) {
+                case 0:
+                    if (fragmentFreeTips == null){
+                        fragmentFreeTips = new FragmentFreeTips();
+                        fragmentFreeTips.setOnFragmentRestart(() -> {
+                            if (freeTips != null)
+                                fragmentFreeTips.setTips(freeTips);
+                            else fragmentFreeTips.setTips(new ArrayList<>());
+                        });
+                    }
+                    if (freeTips != null)
+                        fragmentFreeTips.setTips(freeTips);
+
+                    return fragmentFreeTips;
+
+                case 1:
+                    if (fragmentPremium == null)
+                        fragmentPremium = new FragmentPremium();
+
+                    return fragmentPremium;
+
+                case 2:
+                    if (fragmentPast == null){
+                        fragmentPast = new FragmentPast();
+                        fragmentPast.setOnFragmentRestart(() -> {
+                            if (pastTips != null)
+                                fragmentPast.setTips(pastTips);
+                            else fragmentPast.setTips(new ArrayList<>());
+                        });
+                    }
+                    if (pastTips != null)
+                        fragmentPast.setTips(pastTips);
+
+                    return fragmentPast;
+
+                default:
+                    return null;
             }
-            if (position == 1) {
-                if (fragmentPremium == null)
-                    fragmentPremium = new FragmentPremium();
-                return fragmentPremium;
-            }
-            if (position == 2) {
-                if (fragmentPast == null)
-                    fragmentPast = new FragmentPast();
-                return fragmentPast;
-            }
-            return null;
         }
 
         @Override

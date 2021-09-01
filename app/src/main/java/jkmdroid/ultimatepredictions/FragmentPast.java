@@ -2,6 +2,7 @@ package jkmdroid.ultimatepredictions;
 
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -42,24 +43,13 @@ public class FragmentPast extends Fragment{
         imageError = view.findViewById(R.id.image_error);
 
         if (MyHelper.isOnline(getActivity())) {
-            errorView.setVisibility(View.VISIBLE);
-            errorView.setText("Loading tips....");
+            errorView.setText("Getting tips...Please wait");
         }else {
             imageError.setVisibility(View.VISIBLE);
             errorView.setVisibility(View.VISIBLE);
             errorView.setText("There is no internet connection!!");
             errorView.setTextColor(this.getResources().getColor(R.color.errorColor));
         }
-
-//        MobileAds.initialize(getActivity(), new OnInitializationCompleteListener() {
-//            @Override
-//            public void onInitializationComplete(InitializationStatus initializationStatus) {
-//            }
-//        });
-//
-//        AdView mAdView = view.findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
 
         FrameLayout layout = new FrameLayout(getActivity());
         layout.addView(view);
@@ -80,7 +70,8 @@ public class FragmentPast extends Fragment{
         if (tips != null && tips.size() > 0){
             errorView.setVisibility(View.GONE);
             listView.setAdapter(new Adapter(getContext(), tips));
-        }else{
+        }
+        if (tips == null){
             errorView.setVisibility(View.VISIBLE);
             errorView.setText(R.string.error_string);
             errorView.setTextColor(this.getResources().getColor(R.color.errorColor));
@@ -108,10 +99,6 @@ public class FragmentPast extends Fragment{
             ((TextView)v.findViewById(R.id.time)).setText(MyHelper.toPostDate(tips.get(position).getMatchTime()));
             ((TextView)v.findViewById(R.id.team1)).setText(tips.get(position).getTeamA());
             ((TextView)v.findViewById(R.id.team2)).setText(tips.get(position).getTeamB());
-            ((TextView)v.findViewById(R.id.drawodds)).setText(String.format("%s", tips.get(position).getDraw()));
-            ((TextView)v.findViewById(R.id.homeodds)).setText(String.format("%s", tips.get(position).getHome()));
-            ((TextView)v.findViewById(R.id.awayodds)).setText(String.format("%s", tips.get(position).getAway()));
-
             ImageView imgWinlose = v.findViewById(R.id.winlose);
 
             if (tips.get(position).getVipStatus() == 10){
@@ -120,7 +107,7 @@ public class FragmentPast extends Fragment{
 
             String winlose = tips.get(position).getWinLose();
             String s, correct = tips.get(position).getCorrect();
-            s = "Picked: " + correct + " -> ";
+            s = "Pick => " + correct;
 
             if (winlose.equalsIgnoreCase("won")) {
                 long diff = System.currentTimeMillis() - tips.get(position).getMatchTime();
@@ -129,69 +116,11 @@ public class FragmentPast extends Fragment{
                 else
                     imgWinlose.setImageResource(R.drawable.won_status);
 
-                if (correct.equalsIgnoreCase("home")){
-//                    ((TextView)v.findViewById(R.id.team1)).setTextColor(Color.parseColor("#0B880F"));
-//                    ((TextView)v.findViewById(R.id.homeodds)).setTextColor(Color.parseColor("#0B880F"));
-//                    ((TextView)v.findViewById(R.id.home)).setTextColor(Color.parseColor("#0B880F"));
-                    s += tips.get(position).getHome();
-
-                }else if(correct.equalsIgnoreCase("draw")){
-//                    ((TextView)v.findViewById(R.id.vs)).setTextColor(Color.parseColor("#0B880F"));
-//                    ((TextView)v.findViewById(R.id.drawodds)).setTextColor(Color.parseColor("#0B880F"));
-//                    ((TextView)v.findViewById(R.id.draw)).setTextColor(Color.parseColor("#0B880F"));
-                    s += tips.get(position).getDraw();
-
-                }else if (correct.equalsIgnoreCase("away")){
-//                    ((TextView)v.findViewById(R.id.team2)).setTextColor(Color.parseColor("#0B880F"));
-//                    ((TextView)v.findViewById(R.id.awayodds)).setTextColor(Color.parseColor("#0B880F"));
-//                    ((TextView)v.findViewById(R.id.away)).setTextColor(Color.parseColor("#0B880F"));
-                    s += tips.get(position).getAway();
-
-                }else{
-                    s = "Picked: "+tips.get(position).getCorrect()+" -> "+tips.get(position).getOther();
-                }
-
-                if (tips.get(position).getScore().equals(""))
-                    ((TextView)v.findViewById(R.id.score)).setText(String.format("%s", tips.get(position).getScore()));
-                else
-                    ((TextView)v.findViewById(R.id.score)).setText(String.format("Score:%s", tips.get(position).getScore()));
-
-                ((TextView) v.findViewById(R.id.score)).setTextColor(Color.argb(250,0,165,0));
-                ((TextView) v.findViewById(R.id.correct)).setTextColor(Color.argb(250,0,165,0));
                 ((TextView) v.findViewById(R.id.correct)).setText(s);
 
             }else if(winlose.equalsIgnoreCase("lost")){
                 imgWinlose.setImageResource(R.drawable.lost_status);
 
-                if (correct.equalsIgnoreCase("home")) {
-//                    ((TextView) v.findViewById(R.id.team1)).setTextColor(Color.argb(250, 219, 18, 15));
-//                    ((TextView) v.findViewById(R.id.homeodds)).setTextColor(Color.argb(250, 219, 18, 15));
-//                    ((TextView) v.findViewById(R.id.home)).setTextColor(Color.argb(250, 219, 18, 15));
-                    s += tips.get(position).getHome();
-
-                }else if(correct.equalsIgnoreCase("draw")){
-//                    ((TextView)v.findViewById(R.id.vs)).setTextColor(Color.argb(250,219,18,15));
-//                    ((TextView)v.findViewById(R.id.drawodds)).setTextColor(Color.argb(250,219,18,15));
-//                    ((TextView)v.findViewById(R.id.draw)).setTextColor(Color.argb(250,219,18,15));
-                    s += tips.get(position).getDraw();
-
-                }else if (correct.equalsIgnoreCase("away")){
-//                    ((TextView)v.findViewById(R.id.team2)).setTextColor(Color.argb(250,219,18,15));
-//                    ((TextView)v.findViewById(R.id.awayodds)).setTextColor(Color.argb(250,219,18,15));
-//                    ((TextView)v.findViewById(R.id.away)).setTextColor(Color.argb(250,219,18,15));
-                    s += tips.get(position).getAway();
-
-                }else {
-                    s = "Picked: "+tips.get(position).getCorrect()+" -> "+tips.get(position).getOther();
-                }
-
-                if (tips.get(position).getScore().equals(""))
-                    ((TextView)v.findViewById(R.id.score)).setText(String.format("%s", tips.get(position).getScore()));
-                else
-                    ((TextView)v.findViewById(R.id.score)).setText(String.format("Score:%s", tips.get(position).getScore()));
-
-                ((TextView) v.findViewById(R.id.score)).setTextColor(Color.argb(250, 219, 18, 15));
-                ((TextView) v.findViewById(R.id.correct)).setTextColor(Color.argb(250, 219, 18, 15));
                 ((TextView) v.findViewById(R.id.correct)).setText(s);
 
             }
